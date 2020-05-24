@@ -1,0 +1,83 @@
+<br>
+<div class="row">
+    <form #formregistro="ngForm" class="col-md-10 offset-1" method="post" action="">
+        <h2 class="text-center"> Registro en el Curso </h2>
+        <div class="form-group row">
+        <label for="dnipasajero" class="col-md-4" >DNI</label>
+        <input id="dnipasajero" class="form-control form-control-sm col-md-8" name="dnipasajero" placeholder="Ingrese el DNI" [(ngModel)]="venta.dnipasajero" required minlength="6" #dnipasajero="ngModel"/>
+        <div *ngIf="dnipasajero.invalid && (dnipasajero.dirty || dnipasajero.touched )" class="alert alert-danger">
+            <div *ngIf="dnipasajero.errors.required">
+                DNI es un campo obligatorio
+            </div>
+            <div *ngIf="dnipasajero.errors.minlength">
+                DNI mayor o  igual a 6 digitos
+            </div>
+
+        </div>
+    
+        </div>
+        <div class="form-group row">
+        <label for="precio" class="col-md-4">PRECIO</label>
+        <input id="precio" class="form-control form-control-sm col-md-8" name="precio" [(ngModel)]="venta.precio" placeholder="Ingrese PRECIO" #precio="ngModel" required/>
+        </div>
+        <div class="form-group row">
+        <label for="categoria" class="col-md-4" >CATEGORIA</label>
+            <select name="categoria" id="categoria" class="form-control col-md-8" [(ngModel)]="venta.categoriapasajero" (change)="calcularValor()" required>
+                <option value="Menor">Menor</option>
+                <option value="Adulto">Adulto</option>
+                <option value="Jubilado">Jubilado</option>
+                <option value="s" selected>Seleccione...</option>
+            </select>
+        </div>
+        <div class="row alert-success" *ngIf="mostrar"> 
+            <div class="col-md-5">Descuento: $ {{precio_descuento}} </div>
+            <div class="col-md-5">Precio total: $ {{precio_actual}}</div>
+
+        </div>
+        <div class="row">
+            <div class="col-4"></div> 
+            <button type="button" class="btn btn-secondary col-2" (click)="guardarvta()" [disabled]="!formregistro.form.valid">Enviar</button>
+            <div class="col-2"></div> 
+            <button type="button" class="btn btn-secondary col-2" (click)="limpiarvta()">Limpiar</button>
+            <div class="col-2"></div>     
+        </div>                 
+    </form>
+</div>
+<br>
+<div class="row"><h2 class="alert alert-success col-12"> Listado de Pasajeros </h2></div>
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">DNI</th>
+            <th scope="col">PRECIO</th>
+            <th scope="col">CATEGOR&Iacute;A</th>   
+            <th scope="col">FECHA</th>         
+        </tr>
+    </thead>                                            
+    <tbody >
+        <tr *ngFor="let ve of vector_ventas" >
+            <td></td>
+            <td>{{ve.dnipasajero}}</td>
+            <td>{{ve.precio | currency:"ARS $"}}</td>
+            <td>{{ve.categoriapasajero}}</td>
+            <td>{{ve.fechacompra | date:'dd/MM/yyyy'}}</td>
+        </tr>
+    </tbody>
+    
+</table>
+
+<div class="row alert alert-success">     
+    <div class="col-4">
+        <h6>Cantidad de Menores: {{cantidadmenores}}</h6>
+    </div>
+
+    <div class="col-4">
+        <h6>Cantidad de Adultos: {{cantidadadultos}}</h6>
+
+    </div>
+
+    <div class="col-4">
+        <h6>Cantidad de Jubilados: {{cantidadjubilados}}</h6>
+    </div>
+</div>

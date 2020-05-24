@@ -1,0 +1,54 @@
+<div class="row">
+    <form class="col-md-10 offset-1" method="post" action="">
+        <h2 class="text-center"> Registro en el Curso </h2>
+        <div class="form-group row">
+        <label for="idusuario" class="col-md-4" >Email</label>
+        <input id="idusuario" class="form-control form-control-sm col-md-8" [(ngModel)]="usuario" name="idusuario"/>
+        </div>
+        <div class="form-group row">
+        <label for="idorg" class="col-md-4">Nombre de su Organizacion</label>
+        <input id="idorg" class="form-control form-control-sm col-md-8" [(ngModel)]="nombreOrganizacion" name="idorg"/>
+        </div>
+        <div class="form-group row">
+        <label for="idoption" class="col-md-4" >Gestionar Certificado</label>
+        <input type="radio" class="form-control form-control-sm col-md-2" name="idoption" id="idoption"  [(ngModel)]="constancia" value="true"> Si
+        <input type="radio" class="form-control form-control-sm col-md-2" name="idoption" id="idoption"  [(ngModel)]="constancia" value="false"> No
+        </div>
+               
+        <div class="form-group text-center">
+            <button type="reset" class="btn btn-secondary">Limpiar</button>            
+            <button (click)="decirAdios()" class="btn btn-secondary ml-2 mr-2"><i class="fas fa-save fal"></i> Registrar </button>
+        </div>
+    </form>
+</div>
+
+<table class="table table-striped" [mfData]="asistentes" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+        <tr>
+            <th style="width: 20%">
+            <mfDefaultSorter by="name"> Usuario </mfDefaultSorter>
+            </th>
+            <th style="width: 50%">
+            <mfDefaultSorter by="nombreOrganizacion"> Nombre Organizacion </mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+            <mfDefaultSorter by="constancia"> Constancia </mfDefaultSorter>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of mf.data">
+            <td>{{item.usuario}}</td>
+            <td>{{item.nombreOrganizacion | uppercase}}</td>
+            <td>{{item.constancia}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
