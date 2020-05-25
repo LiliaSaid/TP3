@@ -1,1 +1,37 @@
-<p>punto4 works!</p>
+
+<br>
+<form>
+     <div class="row">
+        <select (change)="seleccionarpalabra()">
+            <option value="">Seleccione...</option>
+            <option *ngFor="let item of palabras_juego" value="{{item.categoria}}">{{item.categoria}} </option>
+        </select>
+    </div>
+    <br>
+    <div class="row alert alert-info">
+        <label for="para" class="col-3">Vidas: {{cantidad_vidas}}</label>
+        <label for="para" class="col-3"></label>
+        <label for="para" class="col-3">Puntaje: {{cantidad_puntaje}}</label>
+        <label for="para" class="col-3"></label>
+    </div>
+
+    <div class="row" *ngFor="let item of palabras_juego">
+        <div class="card-group">
+            <img src="" class="card-img-top" alt="">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <input type="text" name="letra1" id="letra1" class="col-1">
+    </div>
+    <br>
+    <div class="row">
+
+    </div>
+
+    <div class="row">
+        <button type="button" class="btn btn-primary col-1" *ngFor="let item of abecedario">{{item}}</button>
+     
+    </div>
+    <br>
+</form>

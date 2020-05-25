@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class Punto4Component implements OnInit {
 
   abecedario=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-  palabrasjuego=[
+  palabras_juego=[
     {
       "categoria":"animal",
       "elementos":[
@@ -26,13 +26,20 @@ export class Punto4Component implements OnInit {
       ]
     }
 
-  ]
+  ];
+
+  cantidad_vidas: number = 6;
+  cantidad_puntaje: number =0;
   constructor() {
     
 
    }
 
   ngOnInit(): void {
+  }
+
+  public seleccionarpalabra(){
+
   }
 
 }
